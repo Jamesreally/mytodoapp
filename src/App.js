@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import "./App.css";
+import Add from "./components/items";
 
 function App() {
+  const [placehold, setPlacehold]=useState("Enter Activity") 
+  const [newItem, setNewItem] = useState("");
+  const [activityArr, setActivityArr] = useState([]);
+  const [off, setOff]=useState(true)
+  const inputHandler = (event) => {
+   
+    setNewItem(event.target.value);
+  };
+
+ 
+  const addHandler = (event) => {
+    event.preventDefault()
+   
+    if (newItem === "") {
+      return;
+    }
+     else {
+      //const add = new Array(activityArr.push(...newItem));
+      setActivityArr((curArr) => [...curArr,newItem]);
+        
+    setPlacehold("Enter Activity")
+    setNewItem("");     };
+    
+    setNewItem("");
+        };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <span>Todo
+      <input type="text"  id="theText"  value={newItem} onChange={inputHandler} />
+      <Add 
+      activityArr={activityArr} 
+      addHandler={addHandler} />
+    </span>
   );
 }
-
 export default App;
