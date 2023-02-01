@@ -1,42 +1,71 @@
 import React from "react";
 import { useState } from "react";
-import "./App.css";
-import Add from "./components/items";
+import { Item } from "./components";
+import { randy } from "./utils/conversion";
 
 function App() {
-  const [placehold, setPlacehold]=useState("Enter Activity") 
   const [newItem, setNewItem] = useState("");
-  const [activityArr, setActivityArr] = useState([]);
-  const [off, setOff]=useState(true)
-  const inputHandler = (event) => {
-   
-    setNewItem(event.target.value);
+  const [data, setData] = useState([]);
+  const [errors, setErrors] = useState("")
+  const [showError, setShowError] = useState(false)
+  
+  
+  const inputHandler = (e) => {
+    setNewItem(e.target.value);
   };
 
  
-  const addHandler = (event) => {
-    event.preventDefault()
+  const addItem = (e) => {
+    e.preventDefault()
    
     if (newItem === "") {
+      setShowError(true)
+      setErrors("Required**")
       return;
     }
-     else {
-      //const add = new Array(activityArr.push(...newItem));
-      setActivityArr((curArr) => [...curArr,newItem]);
-        
-    setPlacehold("Enter Activity")
-    setNewItem("");     };
+
+    let dataItem = {
+      id: randy(),
+      name: newItem,
+    }
+
+    if (data.length === 0) {
+      data.push(dataItem)
+      setNewItem("")
+    }
+
+    else {
+      const findItem = data.find((item) => (item.name === dataItem.name) || (item.id === dataItem.id)) 
+      if (findItem) {
+        setShowError(true)
+        setErrors("name taken, choose another one")
+        return;
+      }
+      else {
+        setData((curArr) => [...curArr,dataItem])
+      }
+    }
     
-    setNewItem("");
-        };
+    setErrors("")
+    setShowError(false)
+    setNewItem("");    
+  };
 
   return (
-    <span>Todo
-      <input type="text"  id="theText"  value={newItem} onChange={inputHandler} />
-      <Add 
-      activityArr={activityArr} 
-      addHandler={addHandler} />
-    </span>
+    <div className="main-container">
+      <h1 className="title">My Todo List</h1>
+      <div className="container">
+        <p className="errors">{errors}</p>
+        <input
+          type="text"
+          className="input-field"
+          value={newItem}
+          onChange={inputHandler}
+          style={{ border: `${showError ? "1px solid crimson" : ""}` }}
+        />
+      </div>
+      <Item data={data} addItem={addItem} setData={setData} setNewItem={setNewItem} newItem={newItem} setErrors={setErrors} setShowError={setShowError} />
+    </div>
   );
 }
 export default App;

@@ -1,13 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=Lobster+Two&family=Cormorant+Garamond:wght@300&family=Open+Sans:wght@400;500;600;700&family=Racing+Sans+One&family=Rajdhani:wght@500&family=Roboto+Mono:wght@100&display=swap");
+
+
+html,
 body {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "Rajdhani", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-container {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 10em;
+  padding-bottom: 1em;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding-top: 1em;
+  margin-bottom: 0;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-field {
+  width: 80%;
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.errors {
+  font-size: 1em;
+  color: red;
+  font-weight: semibold;
+  text-align: start;
+  float: left;
+}
+
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  width: 87%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+
+.btn {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  padding-left: 2em;
+  padding-right: 2em;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  z-index: 9;
+  border: 0;
+  font-size: 1em;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.btn:hover {
+  background: #00bd68;
+}
+
+@media screen and (max-width: 350px) {
+  .title {
+    font-size: 0.8em;
+  }
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 2em;
+  padding-left: 2.4em;
+}
+
+
+.item {
+  font-size: 1.2em;
+  font-weight: 600;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.edit-delete {
+  display: flex;
+}
+
+.delete-btn {
+  margin-right: 0.6em;
+  font-size: 1.3em;
+  border: 0;
+  color: red;
+  background: none;
+  cursor: pointer;
+}
+
+.edit-btn {
+  font-size: 1.3em;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: blue;
 }
