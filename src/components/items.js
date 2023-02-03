@@ -37,6 +37,11 @@ const Add = ({ data, addItem, setData, setNewItem, newItem, setErrors, setShowEr
   }
 
   const handleEdit = () => {
+    if (newItem === "") {
+      setErrors("Required**");
+      setShowError(true);
+      return;
+    }
     const checkNameExist = data.find((item) => item.name === newItem);
 
     if (checkNameExist) {
@@ -47,7 +52,7 @@ const Add = ({ data, addItem, setData, setNewItem, newItem, setErrors, setShowEr
     
     else {
       const findIndex = data.findIndex((item) => item.id === getId);
-      
+
       data[findIndex] = {
         id: getId,
         name: newItem,
